@@ -1,36 +1,54 @@
 class Judge
+
+    attr_accessor :hands
     attr_accessor :cards
     attr_accessor :suits, :numbers
     attr_accessor :counter_two, :counter_three, :counter_four
 
     def initialize(hands)
+        self.hands = hands
         self.cards = []
         hands = hands.split
         hands.each do |hand|
-            self.cards.push Card.new(suit:hand[0], number:hand[1..2])
+            self.cards.push Card.new(suit: hand[0], number: hand[1..])
         end
     end
 
     def main
-        preprocess
-        if is_flash? && is_straight?
-            return "Straight flash"
-        elsif is_four_of_a_kind?
-            return "Four of a kind"
-        elsif is_full_house?
-            return "Full house"
-        elsif is_flash?
-            return "Flash"
-        elsif is_straight?
-            return "Straight"
-        elsif is_three_of_a_kind?
-            return "Three of a kind"
-        elsif is_twopair?
-            return "Two pair"
-        elsif is_onepair?
-            return "One pair"
+        validation = Validation.new
+        if validation.is_invalid_hands_format?(hands: self.hands)
+            return {type: "error", msg: '5つのカード指定文字を半角スペース区切りで入力してください。（例："S1 H3 D9 C13 S11"）'}
+        elsif validation.is_invalid_card?(cards: self.cards)
+            contents = validation.show_invalid_cards(cards: self.cards)
+            return {type: "error", msg: '半角英字大文字のスート（S,H,D,C）と数字（1〜13）の組み合わせでカードを指定してください。', contents: contents}
+        elsif validation.has_same_card?(cards: self.cards)
+            return {type: "error", msg: 'カードが重複しています。'}
         else
-            return "High card"
+            judge
+        end      
+    end
+
+    def judge
+        preprocess
+
+        if is_flash? && is_straight?
+            return {type: "result", msg: "Straight flash"}
+        elsif is_four_of_a_kind?
+            return {type: "result", msg: "Four of a kind"}
+        elsif is_full_house?
+            return {type: "result", msg: "Full house"}
+        elsif is_flash?
+            return {type: "result", msg: "Flash"}
+        elsif is_straight?
+            return {type: "result", msg: "Straight"}
+        elsif is_three_of_a_kind?
+            return {type: "result", msg: "Three of a kind"}
+        elsif is_twopair?
+            return {type: "result", msg: "Two pair"}
+        elsif is_onepair?
+            return {type: "result", msg: "One pair"}
+        else
+            return {type: "result", msg: "High card"}
         end
     end
 

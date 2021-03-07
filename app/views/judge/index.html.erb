@@ -1,6 +1,5 @@
 <h1>ポーカー役判別アプリ</h1>
 <section>
-    <h2>あなたの役: <%= @res %></h2>
     <%= form_tag("/") do %>
         <div class="form">
             <div class="form-body">
@@ -9,4 +8,10 @@
             </div>
         </div>
     <% end %>
+    <% if @contents %>
+        <% @contents.each do |key, value| %>
+            <p><%= key %>番目のカード指定文字が不正です。（<%= value %>）<p>
+        <% end %>
+    <% end %>
+    <h2><%= @msg %></h2>
 </section>
