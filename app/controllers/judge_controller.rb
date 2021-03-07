@@ -9,7 +9,7 @@ class JudgeController < ApplicationController
               @msg = res[:msg]
               @contents = res[:contents]
             elsif res[:type] == "result"
-              @msg = res[:msg]
+              @res = res[:msg]
             end
         end
   end

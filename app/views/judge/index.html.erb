@@ -1,17 +1,22 @@
-<h1>ポーカー役判別アプリ</h1>
-<section>
-    <%= form_tag("/") do %>
-        <div class="form">
-            <div class="form-body">
-                <textarea name="hands"></textarea>
-                <input type="submit" value="投稿">
+<section class="main">
+    <h1 class="top">ポーカー役判別アプリ</h1>
+    <section class="container">
+        <%= form_tag("/") do %>
+            <div class="form">
+                <div class="form-body">
+                    <input class="input" name="hands"></textarea>
+                    <input class="submit" type="submit" value="チェック">
+                </div>
             </div>
-        </div>
-    <% end %>
-    <% if @contents %>
-        <% @contents.each do |key, value| %>
-            <p><%= key %>番目のカード指定文字が不正です。（<%= value %>）<p>
         <% end %>
-    <% end %>
-    <h2><%= @msg %></h2>
+        <h2 class= "result"><%= @res %></h2>
+        <div class="messages">
+            <% if @contents %>
+                <% @contents.each do |key, value| %>
+                    <p class="content"><%= key %>番目のカード指定文字が不正です。（<%= value %>）<p>
+                <% end %>
+            <% end %>
+            <p class="message"><%= @msg %></p>
+        </div>
+    </section>
 </section>

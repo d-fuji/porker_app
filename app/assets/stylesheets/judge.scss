@@ -1,3 +1,33 @@
 // Place all the styles related to the Judge controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    display: flex;
+    justify-content: center;
+}
+
+.form-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    margin-bottom: 40px;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 16px;
+    outline: none;
+}
+
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
