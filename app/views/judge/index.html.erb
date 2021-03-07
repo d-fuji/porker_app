@@ -1,2 +1,12 @@
-<h1>Judge#index</h1>
-<p>Find me in app/views/judge/index.html.erb</p>
+<h1>ポーカー役判別アプリ</h1>
+<section>
+    <h2>あなたの役: <%= @res %></h2>
+    <%= form_tag("/") do %>
+        <div class="form">
+            <div class="form-body">
+                <textarea name="hands"></textarea>
+                <input type="submit" value="投稿">
+            </div>
+        </div>
+    <% end %>
+</section>
