@@ -19,6 +19,7 @@ class Judge
         if validation.is_invalid_hands_format?(hands: self.hands)
             return INVALID_HANDS_FORMAT_ERROR
         elsif validation.is_invalid_card?(cards: self.cards)
+            # 定数として管理したいが、contentsが変数のためどうしよう...
             contents = validation.show_invalid_cards(cards: self.cards)
             invalid_card_error = INVALID_CARD_ERROR
             invalid_card_error[:contents] = contents

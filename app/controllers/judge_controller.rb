@@ -3,6 +3,8 @@ class JudgeController < ApplicationController
   def index
     @hands = params[:hands]
     @messages = []
+    # POSTリクエストの時にジャッジの判別ロジックを動作させないため
+    @hands = params[:hands]
     if @hands
       judge = Judge.new(@hands)
       res = judge.main
