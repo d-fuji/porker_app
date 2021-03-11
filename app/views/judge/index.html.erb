@@ -9,14 +9,8 @@
                 </div>
             </div>
         <% end %>
-        <h2 class= "result"><%= @res %></h2>
-        <div class="messages">
-            <% if @contents %>
-                <% @contents.each do |key, value| %>
-                    <p class="content"><%= key %>番目のカード指定文字が不正です。（<%= value %>）<p>
-                <% end %>
-            <% end %>
-            <p class="message"><%= @msg %></p>
-        </div>
+        <% @messages.each do |message| %>
+            <p><%= message %>
+        <% end %>
     </section>
 </section>
