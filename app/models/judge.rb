@@ -17,12 +17,14 @@ class Judge
     def main
         validation = Validation.new
         if validation.is_invalid_hands_format?(hands: self.hands)
-            return {type: "error", msg: '5つのカード指定文字を半角スペース区切りで入力してください。（例："S1 H3 D9 C13 S11"）'}
+            return INVALID_HANDS_FORMAT_ERROR
         elsif validation.is_invalid_card?(cards: self.cards)
             contents = validation.show_invalid_cards(cards: self.cards)
-            return {type: "error", msg: '半角英字大文字のスート（S,H,D,C）と数字（1〜13）の組み合わせでカードを指定してください。', contents: contents}
+            invalid_card_error = INVALID_CARD_ERROR
+            invalid_card_error[:contents] = contents
+            return invalid_card_error
         elsif validation.has_same_card?(cards: self.cards)
-            return {type: "error", msg: 'カードが重複しています。'}
+            return HAS_SAME_CARD_ERROR
         else
             judge
         end      
@@ -32,23 +34,23 @@ class Judge
         preprocess
 
         if is_flash? && is_straight?
-            return {msg: "Straight flash"}
+            return STRAIGHT_FLASH
         elsif is_four_of_a_kind?
-            return {msg: "Four of a kind"}
+            return FOUR_OF_A_KIND
         elsif is_full_house?
-            return {msg: "Full house"}
+            return FULL_HOUSE
         elsif is_flash?
-            return {msg: "Flash"}
+            return FLASH
         elsif is_straight?
-            return {msg: "Straight"}
+            return STRAIGHT
         elsif is_three_of_a_kind?
-            return {msg: "Three of a kind"}
+            return THREE_OF_A_KIND
         elsif is_twopair?
-            return {msg: "Two pair"}
+            return TWO_PAIR
         elsif is_onepair?
-            return {msg: "One pair"}
+            return ONE_PAIR
         else
-            return {msg: "High card"}
+            return HIGH_CARD
         end
     end
 
