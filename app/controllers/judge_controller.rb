@@ -8,7 +8,7 @@ class JudgeController < ApplicationController
       if res[:type] == "error"
         @msg = res[:msg]
         @contents = res[:contents]
-      elsif res[:type] == "result"
+      else
         @res = res[:msg]
       end
     end

@@ -32,23 +32,23 @@ class Judge
         preprocess
 
         if is_flash? && is_straight?
-            return {type: "result", msg: "Straight flash"}
+            return {msg: "Straight flash"}
         elsif is_four_of_a_kind?
-            return {type: "result", msg: "Four of a kind"}
+            return {msg: "Four of a kind"}
         elsif is_full_house?
-            return {type: "result", msg: "Full house"}
+            return {msg: "Full house"}
         elsif is_flash?
-            return {type: "result", msg: "Flash"}
+            return {msg: "Flash"}
         elsif is_straight?
-            return {type: "result", msg: "Straight"}
+            return {msg: "Straight"}
         elsif is_three_of_a_kind?
-            return {type: "result", msg: "Three of a kind"}
+            return {msg: "Three of a kind"}
         elsif is_twopair?
-            return {type: "result", msg: "Two pair"}
+            return {msg: "Two pair"}
         elsif is_onepair?
-            return {type: "result", msg: "One pair"}
+            return {msg: "One pair"}
         else
-            return {type: "result", msg: "High card"}
+            return {msg: "High card"}
         end
     end
 
