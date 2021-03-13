@@ -1,4 +1,4 @@
-class Validation
+class ValidationService
     
     def is_invalid_hands_format?(hands:)
         if /^\S*\s\S*\s\S*\s\S*\s\S*$/ === hands
