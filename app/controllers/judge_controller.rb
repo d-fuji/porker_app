@@ -1,10 +1,10 @@
 class JudgeController < ApplicationController
 
   def index
-    @hands = params[:hands]
+    @input_cards = params[:input_cards]
     @messages = []
-    if @hands
-      judge = Judge.new(@hands)
+    if @input_cards
+      judge = Judge.new(@input_cards)
       @messages = judge.return_messages
     end
   end
