@@ -29,11 +29,8 @@ class Judge
             self.response.push(INVALID_HANDS_FORMAT_ERROR)
             return false
         elsif validations.is_invalid_card?(cards: self.cards)
-            self.response.push(INVALID_CARD_ERROR)
-            invalid_cards = validations.show_invalid_cards(cards: self.cards)
-            invalid_cards.each do |key, value|
-                self.response.push("#{key}番目のカード指定文字が不正です。(#{value})")
-            end
+            self.response.push(INVALID_CARD_ERROR, validations.get_invalid_card_messages)
+            self.response.flatten!
             return false
         elsif validations.has_same_card?(cards: self.cards)
             self.response.push(HAS_SAME_CARD_ERROR)
