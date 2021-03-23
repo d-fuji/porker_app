@@ -1,4 +1,5 @@
 # 名前空間使う?
+# ↑のメリットは？
 
 ## ポーカーの役判定
 STRAIGHT_FLASH = "Straight flash"
