@@ -8,8 +8,9 @@ class ValidationService
     def is_invalid_hands_format?(hands:)
         if /^\S*\s\S*\s\S*\s\S*\s\S*$/ === hands
             return false
+        else
+            true
         end
-        return true
     end
 
     def is_invalid_card?(cards:)
@@ -25,8 +26,9 @@ class ValidationService
         end
         if has_invalid_card
             return true
+        else
+            false
         end
-        return false
     end
 
     def has_same_card?(cards:)
@@ -34,10 +36,11 @@ class ValidationService
         cards.each do |card|
             cards_list.push(card.get_combined_value)
         end
-        return (cards_list.count - cards_list.uniq.count) > 0
+        has_same_value = (cards_list.count - cards_list.uniq.count) > 0
+        has_same_value
     end
 
     def get_invalid_card_messages
-        return self.invalid_card_messages
+        self.invalid_card_messages
     end
 end

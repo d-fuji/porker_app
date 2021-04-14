@@ -17,8 +17,9 @@ class Judge
     def return_messages
         if satisfy_validation_item?
             judge_hands
+        else
+            self.response
         end
-        return self.response
     end
 
     def satisfy_validation_item?

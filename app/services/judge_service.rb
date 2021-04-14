@@ -26,36 +26,41 @@ class JudgeService
     def is_onepair?  
         if self.counter_two == 1 && self.counter_three == 0
             return true
+        else
+            false
         end
-        return false
     end
 
     def is_twopair? 
         if self.counter_two == 2
             return true
+        else
+            false
         end
-        return false
     end
 
     def is_three_of_a_kind?
         if self.counter_three == 1 && self.counter_two == 0
             return true
-        end
-        return false  
+        else
+            false
+        end  
     end
 
     def is_full_house?
         if self.counter_three == 1 && self.counter_two == 1
             return true
+        else
+            false
         end
-        return false  
     end
 
     def is_four_of_a_kind?
         if self.counter_four == 1
             return true
+        else
+            false
         end
-        return false
     end
     
     def is_straight?
@@ -70,7 +75,7 @@ class JudgeService
                 counter_continuous_number = 0
             end
         end
-        return false
+        false
     end
 
     def is_flash?
@@ -79,6 +84,6 @@ class JudgeService
                 return true
             end
         end
-        return false
+        false
     end
 end

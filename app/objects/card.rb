@@ -8,6 +8,6 @@ class Card
     end
 
     def get_combined_value
-        return self.suit + self.number
+        self.suit + self.number
     end
 end
