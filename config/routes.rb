@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   
-  get '/' => 'judge#index'
-  post '/' => 'judge#index'
+  get '/' => 'hands#index'
+  post '/' => 'hands#index'
 end
