@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HandsController < ApplicationController
   def index
     @input_cards = params[:input_cards]

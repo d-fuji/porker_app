@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ValidationService
   attr_accessor :invalid_card_messages
 
@@ -32,7 +34,7 @@ class ValidationService
     cards.each do |card|
       cards_list.push(card.get_combined_value)
     end
-    (cards_list.count - cards_list.uniq.count) > 0
+    (cards_list.count - cards_list.uniq.count).positive?
   end
 
   def get_invalid_card_messages

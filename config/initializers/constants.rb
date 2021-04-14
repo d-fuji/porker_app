@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # 名前空間使う?
 # ↑のメリットは？
 

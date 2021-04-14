@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class JudgeService
   attr_accessor :suits, :numbers, :counter_two, :counter_three, :counter_four
 
@@ -13,18 +15,19 @@ class JudgeService
       suits[card.suit] += 1
     end
     numbers.each do |_key, value|
-      if value == 2
+      case value
+      when 2
         self.counter_two += 1
-      elsif value == 3
+      when 3
         self.counter_three += 1
-      elsif value == 4
+      when 4
         self.counter_four += 1
       end
     end
   end
 
   def is_onepair?
-    if self.counter_two == 1 && self.counter_three == 0
+    if self.counter_two == 1 && self.counter_three.zero?
       true
     else
       false
@@ -36,7 +39,7 @@ class JudgeService
   end
 
   def is_three_of_a_kind?
-    if self.counter_three == 1 && self.counter_two == 0
+    if self.counter_three == 1 && self.counter_two.zero?
       true
     else
       false
