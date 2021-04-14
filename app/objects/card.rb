@@ -1,7 +1,6 @@
 class Card
     
-    attr_accessor :suit
-    attr_accessor :number
+    attr_accessor :suit, :number
 
     def initialize(suit:, number:)
         self.suit = suit
