@@ -1,5 +1,4 @@
 class HandsController < ApplicationController
-
   def index
     @input_cards = params[:input_cards]
     @messages = []

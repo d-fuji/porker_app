@@ -2,15 +2,15 @@
 # ↑のメリットは？
 
 ## ポーカーの役判定
-STRAIGHT_FLASH = "Straight flash"
-FOUR_OF_A_KIND = "Four of a kind"
-FULL_HOUSE = "Full house"
-FLASH = "Flash"
-STRAIGHT = "Straight"
-THREE_OF_A_KIND = "Three of a kind"
-TWO_PAIR = "Two pair"
-ONE_PAIR = "One pair"
-HIGH_CARD = "High card"
+STRAIGHT_FLASH = 'Straight flash'
+FOUR_OF_A_KIND = 'Four of a kind'
+FULL_HOUSE = 'Full house'
+FLASH = 'Flash'
+STRAIGHT = 'Straight'
+THREE_OF_A_KIND = 'Three of a kind'
+TWO_PAIR = 'Two pair'
+ONE_PAIR = 'One pair'
+HIGH_CARD = 'High card'
 
 ## エラー判定
 INVALID_HANDS_FORMAT_ERROR = '5つのカード指定文字を半角スペース区切りで入力してください。（例："S1 H3 D9 C13 S11"）'
