@@ -1,4 +1,4 @@
-class Judge
+class Hand
 
     attr_accessor :response
     attr_accessor :hands
