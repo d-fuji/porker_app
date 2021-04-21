@@ -8,7 +8,7 @@ class JudgeService
     self.counter_three = 0
     self.counter_four = 0
     self.numbers = { '1' => 0, '2' => 0, '3' => 0, '4' => 0, '5' => 0, '6' => 0, '7' => 0, '8' => 0, '9' => 0,
-                     '10' => 0, '11' => 0, '12' => 0, '13' => 0 }
+                    '10' => 0, '11' => 0, '12' => 0, '13' => 0 }
     self.suits = { 'S' => 0, 'H' => 0, 'D' => 0, 'C' => 0 }
     cards.each do |card|
       numbers[card.number] += 1
@@ -26,7 +26,7 @@ class JudgeService
     end
   end
 
-  def is_onepair?
+  def onepair?
     if self.counter_two == 1 && self.counter_three.zero?
       true
     else
@@ -34,11 +34,11 @@ class JudgeService
     end
   end
 
-  def is_twopair?
+  def twopair?
     self.counter_two == 2
   end
 
-  def is_three_of_a_kind?
+  def three_of_a_kind?
     if self.counter_three == 1 && self.counter_two.zero?
       true
     else
@@ -46,7 +46,7 @@ class JudgeService
     end
   end
 
-  def is_full_house?
+  def full_house?
     if self.counter_three == 1 && self.counter_two == 1
       true
     else
@@ -54,11 +54,11 @@ class JudgeService
     end
   end
 
-  def is_four_of_a_kind?
+  def four_of_a_kind?
     self.counter_four == 1
   end
 
-  def is_straight?
+  def straight?
     counter_continuous_number = 0
     numbers.each do |_key, value|
       if value == 1
@@ -71,7 +71,7 @@ class JudgeService
     false
   end
 
-  def is_flash?
+  def flash?
     suits.each do |_key, value|
       return true if value == 5
     end

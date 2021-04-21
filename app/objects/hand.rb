@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class Hand
-  attr_accessor :response, :hands, :cards
+  attr_accessor :error, :role
+  attr_accessor :hands, :cards
 
   def initialize(hands)
-    self.response = []
+    self.error = []
+    self.role = []
     self.cards = []
     self.hands = hands
     hands = hands.split
@@ -13,53 +15,45 @@ class Hand
     end
   end
 
-  def return_messages
-    if satisfy_validation_item?
-      judge_hands
-    else
-      response
-    end
-  end
-
-  def satisfy_validation_item?
+  def valid?
     validations = ValidationService.new
 
-    if validations.is_invalid_hands_format?(hands: hands)
-      response.push(INVALID_HANDS_FORMAT_ERROR)
+    if validations.invalid_format?(hands: hands)
+      error.push(INVALID_HANDS_FORMAT_ERROR)
       false
-    elsif validations.is_invalid_card?(cards: cards)
-      response.push(INVALID_CARD_ERROR, validations.get_invalid_card_messages)
-      response.flatten!
+    elsif validations.invalid_value?(cards: cards)
+      error.push(INVALID_CARD_ERROR, validations.error_messages)
+      error.flatten!
       false
-    elsif validations.has_same_card?(cards: cards)
-      response.push(HAS_SAME_CARD_ERROR)
+    elsif validations.doubled?(cards: cards)
+      error.push(HAS_SAME_CARD_ERROR)
       false
     else
       true
     end
   end
 
-  def judge_hands
+  def judge
     judges = JudgeService.new(cards)
 
-    if judges.is_flash? && judges.is_straight?
-      response.push(STRAIGHT_FLASH)
-    elsif judges.is_four_of_a_kind?
-      response.push(FOUR_OF_A_KIND)
-    elsif judges.is_full_house?
-      response.push(FULL_HOUSE)
-    elsif judges.is_flash?
-      response.push(FLASH)
-    elsif judges.is_straight?
-      response.push(STRAIGHT)
-    elsif judges.is_three_of_a_kind?
-      response.push(THREE_OF_A_KIND)
-    elsif judges.is_twopair?
-      response.push(TWO_PAIR)
-    elsif judges.is_onepair?
-      response.push(ONE_PAIR)
+    if judges.flash? && judges.straight?
+      role.push(STRAIGHT_FLASH)
+    elsif judges.four_of_a_kind?
+      role.push(FOUR_OF_A_KIND)
+    elsif judges.full_house?
+      role.push(FULL_HOUSE)
+    elsif judges.flash?
+      role.push(FLASH)
+    elsif judges.straight?
+      role.push(STRAIGHT)
+    elsif judges.three_of_a_kind?
+      role.push(THREE_OF_A_KIND)
+    elsif judges.twopair?
+      role.push(TWO_PAIR)
+    elsif judges.onepair?
+      role.push(ONE_PAIR)
     else
-      response.push(HIGH_CARD)
+      role.push(HIGH_CARD)
     end
   end
 end

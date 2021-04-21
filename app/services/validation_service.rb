@@ -1,43 +1,36 @@
 # frozen_string_literal: true
 
 class ValidationService
-  attr_accessor :invalid_card_messages
+  attr_accessor :error_messages
 
   def initialize
-    self.invalid_card_messages = []
+    self.error_messages = []
   end
 
-  def is_invalid_hands_format?(hands:)
+  def invalid_format?(hands:)
     !(/^\S*\s\S*\s\S*\s\S*\s\S*$/ === hands)
   end
 
-  def is_invalid_card?(cards:)
-    has_invalid_card = false
+  def invalid_value?(cards:)
+    invalid_value = false
     counter = 1
     cards.each do |card|
-      if /^[SHDC](?:[1-9]$|1[0-3]$)/ === card.get_combined_value
+      if /^[SHDC](?:[1-9]$|1[0-3]$)/ === card.value
+        # do nothing
       else
-        invalid_card_messages.push("#{counter}番目のカード指定文字が不正です。(#{card.get_combined_value})")
+        error_messages.push("#{counter}番目のカード指定文字が不正です。(#{card.value})")
         has_invalid_card = true
       end
       counter += 1
     end
-    if has_invalid_card
-      true
-    else
-      false
-    end
+    invalid_card
   end
 
-  def has_same_card?(cards:)
+  def doubled?(cards:)
     cards_list = []
     cards.each do |card|
-      cards_list.push(card.get_combined_value)
+      cards_list.push(card.value)
     end
     (cards_list.count - cards_list.uniq.count).positive?
-  end
-
-  def get_invalid_card_messages
-    invalid_card_messages
   end
 end
