@@ -1,0 +1,16 @@
+<section class="main">
+    <h1 class="top">ポーカー役判別アプリ</h1>
+    <section class="container">
+        <%= form_tag("/") do %>
+            <div class="form">
+                <div class="form-body">
+                    <input class="input" name="input_cards">
+                    <input class="submit" type="submit" value="チェック">
+                </div>
+            </div>
+        <% end %>
+        <% @messages.each do |message| %>
+            <p><%= message %></p>
+        <% end %>
+    </section>
+</section>
