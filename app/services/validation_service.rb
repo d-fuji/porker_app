@@ -19,11 +19,11 @@ class ValidationService
         # do nothing
       else
         error_messages.push("#{counter}番目のカード指定文字が不正です。(#{card.value})")
-        has_invalid_card = true
+        invalid_value = true
       end
       counter += 1
     end
-    invalid_card
+    invalid_value
   end
 
   def doubled?(cards:)
