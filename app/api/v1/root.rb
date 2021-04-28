@@ -3,6 +3,6 @@ module V1
         version :v1
         format :json
     
-        mount V1::Hands
+        mount V1::Cards
     end
 end
