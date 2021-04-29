@@ -33,6 +33,24 @@ class Hand
     end
   end
 
+  def api_valid?
+    validations = ValidationService.new
+
+    if validations.invalid_format?(hands: hands)
+      error.push(INVALID_HANDS_FORMAT_ERROR)
+      false
+    elsif validations.invalid_value?(cards: cards)
+      error.push(validations.error_messages)
+      error.flatten!
+      false
+    elsif validations.doubled?(cards: cards)
+      error.push(HAS_SAME_CARD_ERROR)
+      false
+    else
+      true
+    end
+  end
+
   def judge
     judges = JudgeService.new(cards)
 
